@@ -13,9 +13,12 @@ sudo apt-get remove -y lxplug-ptbatt
 # Install ppp package
 sudo apt-get install -y ppp
 
+# Install libatlas-base-dev package
+sudo apt-get install -y libatlas-base-dev
+
 # Add additional configuration lines to /boot/config.txt
 {
-  echo "dtoverlay=pi3-disable-bt"
+  echo "dtoverlay=disable-bt"
   echo "init_uart_clock=64000000"
   #echo "hdmi_cvt=1024 600 60 3 0 0 1"
   #echo "hdmi_group=2"
@@ -32,7 +35,7 @@ sudo sed -i '/^exit 0$/i echo "Starting pppd..."\nstty -F /dev/ttyAMA0 raw\nstty
 sudo pip3 install --upgrade setuptools
 
 # Install 
-sudo pip3 install adafruit-circuitpython-mma8451
+# sudo pip3 install adafruit-circuitpython-mma8451
 
 # Change directory to home
 cd ~
@@ -46,4 +49,24 @@ wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/m
 # Run raspi-blinka.py
 yes n | sudo python3 raspi-blinka.py
 
+# Install adafruit-circuitpython-bme280
+sudo pip3 install adafruit-circuitpython-bme280
+
+# Install adafruit-circuitpython-lsm6ds
+sudo pip3 install adafruit-circuitpython-lsm6ds
+
+# Install pyqtgraph
+sudo pip3 install pyqtgraph
+
+# Clone Clinostat Control Center
+cd ~
+mkdir ~/Documents/Restore
+cd ~/Documents/Restore
+git clone -b FL32899KS https://github.com/CoCl-Jerry/SciSpin_Max_RELEASE.git
+sh ~/Documents/Restore/SciSpin_Max_RELEASE/update.sh
+cp ~/Documents/Restore/SciSpin_Max_RELEASE/run.desktop ~/Desktop
+cp ~/Documents/Restore/SciSpin_Max_RELEASE/update.desktop ~/Desktop
+
 # End of the script
+# in config disable SSH Serial Console
+# Change background and text color
